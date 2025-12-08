@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import CategoriesSlider from "../Components/CategoriesSlider";
 import HeroSlider from "../Components/HeroSlider";
@@ -10,36 +11,60 @@ import ContactSection from "../Components/ContactSection";
 import Footer from "../Components/Footer";
 
 export default function HomePage() {
-    return (
-        <div>
-            <Navbar />
+  const navigate = useNavigate();
 
-            <section id="home">
-                <CategoriesSlider />
-                <HeroSlider />
-            </section>
+  const goToSection = (sectionId) => {
+    navigate("/");
 
-            <section id="about">
-                <AboutSection />
-            </section>
+    let attempts = 0;
+    const maxAttempts = 100;
 
-            <section id="categories">
-                <Categories />
-            </section>
+    const tryScroll = () => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      attempts++;
+      if (attempts < maxAttempts) {
+        requestAnimationFrame(tryScroll);
+      }
+    };
 
-            <section id="trending">
-                <TrendingProducts />
-            </section>
+    requestAnimationFrame(tryScroll);
+  };
 
-            <section id="blogs">
-                <BlogsSection />
-            </section>
+  return (
+    <div>
+      <Navbar goToSection={goToSection} />
 
-            <section id="contact">
-                <ContactSection />
-            </section>
+      <section id="home">
+        <CategoriesSlider />
+        <HeroSlider />
+      </section>
 
-            <Footer />
-        </div>
-    );
+      <section id="about">
+        <AboutSection />
+      </section>
+
+      <section id="categories">
+        <Categories />
+      </section>
+
+      <section id="trending">
+        <TrendingProducts />
+      </section>
+
+      <section id="blogs">
+        <BlogsSection />
+      </section>
+
+      <section id="contact">
+        <ContactSection />
+      </section>
+
+      <Footer />
+      {/* <Navbar /> */}
+    </div>
+  );
 }

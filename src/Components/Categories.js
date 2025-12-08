@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Categories.css";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(
@@ -20,21 +22,31 @@ export default function Categories() {
       });
   }, []);
 
+  // ✅ PASS BOTH ID + NAME
+  const handleCategoryClick = (id, name) => {
+    navigate(`/categories/${id}`, {
+      state: { categoryName: name },
+    });
+  };
+
   return (
     <section className="category-section" id="categories">
-      {/* Title */}
       <h2 className="section-title">
         <span>Categories</span>
       </h2>
 
-      {/* Loading State */}
       {loading && <p className="loading-text">Loading categories...</p>}
 
-      {/* Category Cards */}
       <div className="category-grid">
         {categories.map((cat) => (
-          <div className="category-card" key={cat.id}>
-            
+          <div
+            className="category-card"
+            key={cat.id}
+            onClick={() =>
+              handleCategoryClick(cat.id, cat.category_name)
+            }
+            style={{ cursor: "pointer" }}
+          >
             <div className="image-box">
               <img
                 src={cat.category_image}
@@ -42,19 +54,16 @@ export default function Categories() {
                 loading="lazy"
               />
 
-              {/* Count Badge */}
               <span className="count-badge">
                 {cat.product_count}
               </span>
             </div>
 
-            {/* Name */}
             <p className="cat-name">{cat.category_name}</p>
           </div>
         ))}
       </div>
 
-      {/* If no categories */}
       {!loading && categories.length === 0 && (
         <p className="empty-text">No categories available.</p>
       )}

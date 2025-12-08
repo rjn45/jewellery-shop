@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./TrendingProducts.css";
 
 export default function TrendingProducts() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate(); // ✅ navigation
 
   useEffect(() => {
     fetch(
@@ -22,13 +24,16 @@ export default function TrendingProducts() {
         <span>TRENDING PRODUCTS</span>
       </h2>
 
-      {/* Scroll Wrapper */}
       <div className="trending-scroll">
         <div className="trending-grid">
+
           {products.map((item) => (
-            <div className="trend-card" key={item.id}>
-              
-              {/* Image */}
+            <div 
+              className="trend-card" 
+              key={item.id}
+              onClick={() => navigate(`/products/${item.id}`)}  // ✅ CLICK NAVIGATION
+            >
+
               <div className="trend-img-wrapper">
                 <img
                   src={item.product_image}
@@ -36,7 +41,6 @@ export default function TrendingProducts() {
                   loading="lazy"
                 />
 
-                {/* Offer Badge */}
                 {item.discount_percentage > 0 && (
                   <span className="offer-badge">
                     {item.discount_percentage}% OFF
@@ -44,7 +48,6 @@ export default function TrendingProducts() {
                 )}
               </div>
 
-              {/* Content */}
               <div className="trend-content">
                 <h3 className="trend-name">{item.product_name}</h3>
 
@@ -60,9 +63,10 @@ export default function TrendingProducts() {
 
             </div>
           ))}
+
         </div>
       </div>
-      
+
     </section>
   );
 }

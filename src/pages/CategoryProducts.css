@@ -1,0 +1,91 @@
+.nav-links { 
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ✅ MAIN CONTAINER — GAP FIXED */
+.category-products-page {
+  max-width: 1200px;
+  padding: 10px 20px 60px;   /* ✅ TOP GAP REMOVED */
+  margin-top: 0;            /* ✅ EXTRA SAFETY */
+  text-align: center;
+}
+
+/* ✅ BACK BUTTON — NO EXTRA PUSH */
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 14px;   /* ✅ REDUCED */
+  color: #333;
+}
+
+/* ✅ CATEGORY TITLE */
+.category-title {
+  font-size: 34px;
+  color: #e65e5e;
+  margin-bottom: 20px;
+}
+
+/* ✅ PRODUCT GRID */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* gap: 20px; */
+  margin-bottom: 200px;
+}
+
+/* ✅ PRODUCT CARD */
+.product-card {
+  background: white;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  margin: 10px 0 5px;
+}
+
+.product-card p {
+  color: #555;
+}
+
+.empty-text {
+  color: gray;
+  margin-top: 20px;
+}
+
+/* ✅ STATES */
+.loading-text,
+.empty-text {
+  text-align: center;
+  font-size: 17px;
+  margin-top: 40px;
+  color: #555;
+}
+
+/* ✅ ✅ MOBILE FIX (CLASS NAME CORRECTED) */
+@media (max-width: 768px) {
+  .category-products-page {
+    padding: 10px 14px 50px;   /* ✅ NO NAVBAR GAP */
+  }
+
+  .category-title {
+    font-size: 28px;
+  }
+
+  .product-card img {
+    height: 200px;
+  }
+}

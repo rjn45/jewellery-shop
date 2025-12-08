@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../App.css";
 
 export default function Navbar() {
@@ -6,45 +7,56 @@ export default function Navbar() {
   const [active, setActive] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Fetch shop data
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Fetch shop info
   useEffect(() => {
     fetch("https://myvillage.dev.birthplace.in/api/shops/shop_names/rtk-gold-shop")
-      .then((response) => response.json())
-      .then((result) => setShop(result));
+      .then((res) => res.json())
+      .then((data) => setShop(data));
   }, []);
 
-  // ---------- SCROLL SPY: Detect active section ----------
+  // Listen for external active tab change
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
-    const options = {
-      threshold: 0.6, // 60% of section visible
+    const handler = (e) => {
+      setActive(e.detail);
     };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          const formatted = id.charAt(0).toUpperCase() + id.slice(1);
-          setActive(formatted);
-        }
-      });
-    }, options);
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
+    window.addEventListener("setActiveNav", handler);
+    return () => window.removeEventListener("setActiveNav", handler);
   }, []);
 
-  // ---------- CLICK HANDLERS ----------
+  // Auto-detect active tab by URL
+  useEffect(() => {
+    const path = location.pathname;
+
+    if (path === "/") setActive("Home");
+    else if (path.startsWith("/categories")) setActive("Categories");
+    else if (path.startsWith("/blogs")) setActive("Blogs");
+    else if (path.startsWith("/products")) setActive("Trending"); // ⭐ correct path
+    else setActive("");
+  }, [location.pathname]);
+
+  // Scroll and navigation handler
   const handleNavClick = (id) => {
     setActive(id);
-    document.getElementById(id.toLowerCase()).scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
+
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const target = document.getElementById(id.toLowerCase());
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+      return;
+    }
+
+    const target = document.getElementById(id.toLowerCase());
+    if (target) target.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <nav className="navbar">
-
       <div className="nav-left">
         <img src={shop.logo} alt="logo" className="shop-logo" />
         <h1 className="shop-title">{shop.shop_name}</h1>
@@ -55,7 +67,6 @@ export default function Navbar() {
       </div>
 
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-
         <li className={active === "Home" ? "active" : ""} onClick={() => handleNavClick("Home")}>
           <i className="fa-solid fa-house"></i> Home
         </li>
@@ -72,16 +83,14 @@ export default function Navbar() {
           <i className="fa-solid fa-fire"></i> Trending
         </li>
 
-        <li className={active === "Blogs" ? "active" : ""} onClick={() => handleNavClick("Blogs")}>
+        <li className={active === "Blogs" ? "active" : ""} onClick={() => navigate("/blogs")}>
           <i className="fa-solid fa-blog"></i> Blogs
         </li>
 
         <li className={active === "Contact" ? "active" : ""} onClick={() => handleNavClick("Contact")}>
           <i className="fa-solid fa-address-card"></i> Contact
         </li>
-
       </ul>
-
     </nav>
   );
 }
