@@ -1,0 +1,99 @@
+/* === ABOUT SECTION === */
+.about-section {
+  padding: 70px 20px;
+  text-align: center;
+  background: #f7b7b7;
+}
+
+/* --- TITLE --- */
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  color: #d9443c;
+  letter-spacing: 7px;
+  margin-bottom: 55px;
+  font-weight: 600;
+  position: relative;
+  font-family: "Cinzel", Georgia, serif;
+}
+
+.section-title span {
+  background: #f7b7b7;
+  padding: 0 25px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Lines */
+.section-title::before,
+.section-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 160px;
+  height: 2px;
+  background: #d9443c;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.section-title::before {
+  left: calc(50% - 240px);
+}
+
+.section-title::after {
+  right: calc(50% - 240px);
+}
+
+/* MOBILE — Title */
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 26px;
+    letter-spacing: 4px;
+  }
+  .section-title::before,
+  .section-title::after {
+    width: 80px;
+  }
+  .section-title::before {
+    left: calc(50% - 130px);
+  }
+  .section-title::after {
+    right: calc(50% - 130px);
+  }
+}
+
+/* --- ABOUT CARD --- */
+.about-card {
+  width: 78%;
+  max-width: 850px;
+  background: #fff;
+  margin: auto;
+  padding: 45px 50px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  text-align: left;
+}
+
+/* Heading */
+.about-heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* Paragraph text */
+.about-text {
+  font-size: 16.2px;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 0; /* removed space for footer */
+}
+
+/* Responsive Card */
+@media (max-width: 768px) {
+  .about-card {
+    width: 90%;
+    padding: 30px;
+  }
+}

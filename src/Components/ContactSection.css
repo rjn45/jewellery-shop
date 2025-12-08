@@ -1,0 +1,144 @@
+/* Title: CONTACT (fixed so the line doesn't cut letters) */
+.contact-title {
+  text-align: center;
+  font-size: 28px;
+  color: #e74c3c;
+  letter-spacing: 6px;            /* wider spacing like original */
+  margin-bottom: 45px;
+  font-weight: 700;
+  position: relative;
+  font-family: "Cinzel", Georgia, "Times New Roman", serif; /* optional */
+}
+
+/* the span sits above the horizontal lines */
+.contact-title span {
+  display: inline-block;
+  position: relative;
+  z-index: 2;                     /* ensures text sits on top */
+  padding: 0 20px;
+  background: #f4b9b9;            /* same as the section background to mask the line */
+}
+
+/* lines behind the text */
+.contact-title:before,
+.contact-title:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);    /* true vertical centering (prevents cutting letters) */
+  height: 2px;
+  background: #e74c3c;
+  z-index: 1;                     /* below the span */
+  width: 160px;                   /* length of each line */
+}
+
+/* adjust horizontal placement of lines */
+.contact-title:before {
+  left: calc(50% - 210px);
+}
+.contact-title:after {
+  right: calc(50% - 210px);
+}
+
+/* responsivity - shorten lines on small screens */
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 22px;
+    letter-spacing: 4px;
+  }
+
+  .contact-title span {
+    padding: 0 12px;
+  }
+
+  .contact-title:before,
+  .contact-title:after {
+    width: 80px;
+  }
+
+  .contact-title:before {
+    left: calc(50% - 110px);
+  }
+  .contact-title:after {
+    right: calc(50% - 110px);
+  }
+}
+
+
+/* CARD */
+.contact-card {
+  background: #fff;
+  width: 65%;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 14px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+   margin-bottom: 60px;
+}
+
+/* Inner spacing same as original */
+.contact-inner {
+  padding: 35px 40px;
+}
+
+/* CONTACT ROW */
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+/* ICONS */
+.contact-icon {
+  font-size: 20px;
+  margin-right: 14px;
+  color: #000;
+}
+
+.location {
+  color: red;
+}
+
+/* TEXT */
+.contact-label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.contact-value {
+  font-size: 15px;
+  margin-top: 3px;
+  color: #555;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .contact-card {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-card {
+    width: 90%;
+  }
+
+  .contact-inner {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-title:before,
+  .contact-title:after {
+    width: 70px;
+  }
+
+  .contact-card {
+    width: 95%;
+  }
+}

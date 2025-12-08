@@ -1,0 +1,99 @@
+/* Background wrapper */
+.trending-section {
+  /* background: #e9aeb3; */
+  padding: 60px 0;
+}
+
+/* Title */
+.trend-title {
+  text-align: center;
+  font-size: 26px;
+  color: #b54253;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.trend-title span {
+  border-bottom: 3px solid #b54253;
+  padding-bottom: 4px;
+}
+
+/* GRID – One row layout like original */
+.trending-grid {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap; /* responsive */
+}
+
+/* Card */
+.trend-card {
+  width: 240px;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  transition: 0.3s ease-in-out;
+}
+
+.trend-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Image */
+.trend-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.trend-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offer-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff3b3b;
+  padding: 5px 12px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 20px;
+}
+
+/* Content */
+.trend-content {
+  padding: 12px 14px;
+}
+
+.trend-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.trend-price {
+  color: #d89d1e;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.old-price {
+  margin-left: 7px;
+  text-decoration: line-through;
+  color: #888;
+  font-weight: 500;
+}
+
+/* Views */
+.views {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #555;
+}
