@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
 import "./CategoryProducts.css";
 
 export default function CategoryProducts() {
@@ -75,7 +74,7 @@ export default function CategoryProducts() {
         </div>
       </div>
 
-      <Footer />
+      
     </>
   );
 }

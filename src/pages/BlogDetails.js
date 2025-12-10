@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
 import "./BlogDetails.css";
 
 export default function BlogDetails() {
@@ -43,7 +42,7 @@ export default function BlogDetails() {
         </div>
       </div>
 
-      <Footer />
+      
     </>
   );
 }

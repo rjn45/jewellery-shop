@@ -5,19 +5,132 @@
   background: #f4b5bb40; /* soft pink background like original */
 }
 
-/* TITLE */
-.section-title {
+/* Categories Title – EXACT LIKE CONTACT */
+.categories-title {
   text-align: center;
   font-size: 28px;
-  color: #c74e61;
-  font-weight: bold;
-  margin-bottom: 30px;
+  color: #e74c3c;
+  letter-spacing: 6px;
+  margin-bottom: 45px;
+  font-weight: 700;
+  position: relative;
+  font-family: "Cinzel", Georgia, "Times New Roman", serif;
 }
+
+/* span sits on top of the line */
+.categories-title span {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+  background: #f4b5bb40;   /* EXACT SAME PINK BACKGROUND YOU USED IN SECTION */
+}
+
+/* horizontal lines */
+.categories-title::before,
+.categories-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: #e74c3c;
+  z-index: 1;
+  width: 160px;   /* SAME AS CONTACT */
+}
+
+/* place lines left & right */
+.categories-title::before {
+  left: calc(50% - 300px);
+}
+
+.categories-title::after {
+  right: calc(50% - 300px);
+}
+
+/* mobile responsive */
+@media (max-width: 480px) {
+  .categories-title {
+    font-size: 22px;
+    letter-spacing: 4px;
+  }
+
+  .categories-title span {
+    padding: 0 12px;
+  }
+
+  .categories-title::before,
+  .categories-title::after {
+    width: 80px;
+  }
+
+  .categories-title::before {
+    left: calc(50% - 110px);
+  }
+
+  .categories-title::after {
+    right: calc(50% - 110px);
+  }
+}
+
+
+
+.view-all-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.view-all-btn {
+  padding: 12px 26px;
+  border: 1px solid red;
+  background: transparent;
+  color: red;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-all-btn:hover {
+  background: red;
+  color: white;
+}
+
 
 .section-title span {
   border-bottom: 3px solid #c74e61;
   padding-bottom: 4px;
 }
+
+/* PAGINATION */
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: 1px solid red;
+  background: transparent;
+  color: red;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button:hover {
+  background: red;
+  color: #fff;
+}
+
+.pagination .active {
+  background: red;
+  color: white;
+}
+
 
 /* GRID (3 per row like original) */
 .category-grid {

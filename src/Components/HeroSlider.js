@@ -28,7 +28,7 @@ export default function HeroSlider() {
   if (slides.length === 0) return null;
 
   return (
-    <section id="home" className="home-section">
+    <div className="home-section">
       <div className="hero-slider-container">
         <div className="hero-slider">
           {slides.map((img, index) => (
@@ -51,6 +51,6 @@ export default function HeroSlider() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

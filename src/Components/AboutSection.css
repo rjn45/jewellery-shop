@@ -5,63 +5,81 @@
   background: #f7b7b7;
 }
 
-/* --- TITLE --- */
-.section-title {
+/* === ABOUT SECTION === */
+.about-section {
+  padding: 70px 20px;
   text-align: center;
-  font-size: 32px;
-  color: #d9443c;
-  letter-spacing: 7px;
-  margin-bottom: 55px;
-  font-weight: 600;
-  position: relative;
-  font-family: "Cinzel", Georgia, serif;
+  background: #f7b7b7;
 }
 
-.section-title span {
-  background: #f7b7b7;
-  padding: 0 25px;
+/* === MATCH CONTACT TITLE EXACTLY === */
+.about-title {
+  text-align: center;
+  font-size: 28px;
+  color: #e74c3c;
+  letter-spacing: 6px;
+  margin-bottom: 45px;
+  font-weight: 700;
+  position: relative;
+  font-family: "Cinzel", Georgia, "Times New Roman", serif;
+}
+
+/* span text background same as contact */
+.about-title span {
+  display: inline-block;
   position: relative;
   z-index: 2;
+  padding: 0 20px;
+  background: #f7b7b7;
 }
 
-/* Lines */
-.section-title::before,
-.section-title::after {
+/* two side lines same as contact */
+.about-title::before,
+.about-title::after {
   content: "";
   position: absolute;
   top: 50%;
-  width: 160px;
-  height: 2px;
-  background: #d9443c;
   transform: translateY(-50%);
+  height: 2px;
+  background: #e74c3c;
   z-index: 1;
+  width: 160px;
 }
 
-.section-title::before {
-  left: calc(50% - 240px);
+.about-title::before {
+  left: calc(50% - 210px);
 }
 
-.section-title::after {
-  right: calc(50% - 240px);
+.about-title::after {
+  right: calc(50% - 210px);
 }
 
-/* MOBILE — Title */
+/* responsive like contact */
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 26px;
+  .about-title {
+    font-size: 22px;
     letter-spacing: 4px;
   }
-  .section-title::before,
-  .section-title::after {
+
+  .about-title span {
+    padding: 0 12px;
+  }
+
+  .about-title::before,
+  .about-title::after {
     width: 80px;
   }
-  .section-title::before {
-    left: calc(50% - 130px);
+
+  .about-title::before {
+    left: calc(50% - 110px);
   }
-  .section-title::after {
-    right: calc(50% - 130px);
+
+  .about-title::after {
+    right: calc(50% - 110px);
   }
 }
+
+
 
 /* --- ABOUT CARD --- */
 .about-card {

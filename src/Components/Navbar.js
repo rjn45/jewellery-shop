@@ -10,34 +10,51 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Fetch shop info
+  // ✅ FETCH SHOP DATA
   useEffect(() => {
     fetch("https://myvillage.dev.birthplace.in/api/shops/shop_names/rtk-gold-shop")
       .then((res) => res.json())
       .then((data) => setShop(data));
   }, []);
 
-  // Listen for external active tab change
-  useEffect(() => {
-    const handler = (e) => {
-      setActive(e.detail);
-    };
-    window.addEventListener("setActiveNav", handler);
-    return () => window.removeEventListener("setActiveNav", handler);
-  }, []);
-
-  // Auto-detect active tab by URL
+  // ✅ AUTO ACTIVE TAB BASED ON URL (FIXES YOUR ISSUE)
   useEffect(() => {
     const path = location.pathname;
 
     if (path === "/") setActive("Home");
-    else if (path.startsWith("/categories")) setActive("Categories");
-    else if (path.startsWith("/blogs")) setActive("Blogs");
-    else if (path.startsWith("/products")) setActive("Trending"); // ⭐ correct path
-    else setActive("");
+    else if (path.includes("about")) setActive("About");
+    else if (path.includes("categories")) setActive("Categories");
+    else if (path.includes("trending")) setActive("Trending");
+    else if (path.includes("blogs")) setActive("Blogs");
+    else if (path.includes("product")) setActive("Trending");
+    else if (path.includes("contact")) setActive("Contact");
+
   }, [location.pathname]);
 
-  // Scroll and navigation handler
+  // ✅ SCROLL SPY ONLY FOR HOME PAGE
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const sections = ["home", "about", "categories", "trending", "blogs", "contact"];
+
+    const handleScroll = () => {
+      let scrollPos = window.scrollY + 150;
+
+      for (let sec of sections) {
+        const el = document.getElementById(sec);
+        if (!el) continue;
+
+        if (scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
+          setActive(sec.charAt(0).toUpperCase() + sec.slice(1));
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
+
+  // ✅ NAVIGATION HANDLER
   const handleNavClick = (id) => {
     setActive(id);
     setMenuOpen(false);
@@ -67,6 +84,7 @@ export default function Navbar() {
       </div>
 
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+
         <li className={active === "Home" ? "active" : ""} onClick={() => handleNavClick("Home")}>
           <i className="fa-solid fa-house"></i> Home
         </li>
@@ -83,13 +101,14 @@ export default function Navbar() {
           <i className="fa-solid fa-fire"></i> Trending
         </li>
 
-        <li className={active === "Blogs" ? "active" : ""} onClick={() => navigate("/blogs")}>
+        <li className={active === "Blogs" ? "active" : ""} onClick={() => handleNavClick("Blogs")}>
           <i className="fa-solid fa-blog"></i> Blogs
         </li>
 
         <li className={active === "Contact" ? "active" : ""} onClick={() => handleNavClick("Contact")}>
           <i className="fa-solid fa-address-card"></i> Contact
         </li>
+
       </ul>
     </nav>
   );

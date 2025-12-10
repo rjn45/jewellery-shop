@@ -6,9 +6,10 @@ export default function AboutSection() {
     <section className="about-section" id="about">
       
       {/* Title */}
-      <h2 className="section-title">
-        <span>ABOUT</span>
-      </h2>
+      <h2 className="about-title">
+  <span>ABOUT</span>
+</h2>
+
 
       {/* About Card */}
       <div className="about-card">

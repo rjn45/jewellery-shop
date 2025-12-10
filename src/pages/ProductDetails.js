@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ProductDetails.css";
 import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -61,7 +60,7 @@ export default function ProductDetails() {
         </div>
       </div>
 
-      <Footer />
+      
     </>
   );
 }

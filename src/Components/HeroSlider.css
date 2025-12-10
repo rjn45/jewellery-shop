@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 20px 15px; /* Gives left/right gap like original */
   position: relative;
+  overflow: hidden;
 }
 
 .hero-slider {

@@ -35,7 +35,8 @@ export default function HomePage() {
   };
 
   return (
-    <div>
+    <div className="main-wrapper">
+          <div>
       <Navbar goToSection={goToSection} />
 
       <section id="home">
@@ -64,7 +65,7 @@ export default function HomePage() {
       </section>
 
       <Footer />
-      {/* <Navbar /> */}
+    </div>
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "../App.css"; // we will add CSS here
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 export default function CategoriesSlider() {
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();   // ✅ ADD THIS
 
   useEffect(() => {
     fetch("https://myvillage.dev.birthplace.in/api/shops/shops_categories/shop/rtk-gold-shop")
@@ -15,8 +17,13 @@ export default function CategoriesSlider() {
   return (
     <div className="categories-section">
       <div className="categories-scroll">
+
         {categories.map(cat => (
-          <div key={cat.id} className="category-item">
+          <div 
+            key={cat.id} 
+            className="category-item"
+            onClick={() => navigate(`/categories/${cat.id}`)}   // ✅ CLICK NAVIGATION
+          >
             <div className="category-image-wrapper">
               <img 
                 src={cat.category_image}
@@ -24,9 +31,11 @@ export default function CategoriesSlider() {
                 className="category-image"
               />
             </div>
+
             <p className="category-label">{cat.category_name}</p>
           </div>
         ))}
+
       </div>
     </div>
   );
